@@ -1,0 +1,505 @@
+Relational Database Vs Document Database
+----------------------------------------------
+There are two most common types of Databases
+1. Relational Databases / SQL Databases
+2. Document Databases / NoSQL Databases
+----------------------------------------------
+
+1. Relational Databases / SQL Databases
+----------------------------------------------
+=> The data willbe stored in tables and these tables has fixed schema.
+=> The data stored in tables has relationships like
+	one to one
+	one to many
+	many to one
+	etc
+ 
+To retrieve data from Relational Databases we have to write join queries which collects data from different tables.
+----------------------------------------------------------------------------------
+
+
+2. Document Databases / NoSQL Databases
+-------------------------------------------
+Data will be stored in separate documents and each document is independent of others.
+
+e.g : MongoDB
+
+
+MongoDB Structure : 
+--------------------
+=> MongoDB physical database contains several logical databases
+=> Each database contains several collections.collection is something like    table in relational database
+=> Each collection contains several documents. Document is something like    recors/row in relational database.
+
+=> e.g : 
+=> Database : shopping cart database
+=> Collections : customers, products, orders
+=> customer collection : contains several documents
+
+document 1 :
+		{
+		   "Name" : "Gautam",
+		   "age"  : 40,
+		   "salary" : 10000
+		}
+
+document 2 :
+		{
+		   "Name" : "Vaidehi"
+		}
+
+document 3 :
+		{
+		   "name" : "Bunny",
+		   "age"  : 30,
+		   "address" :
+			{
+			   "city" : "Nagpur"
+			},
+		    "hobbies" : [
+				    { "name" : "cricket playing"},
+				    { "name" : "swimming"}
+			 	 ]
+		}
+
+
+How data represented in MongoDB ?
+In JSON (BSON)  Format.
+JSON ==> Java Script Object Notation
+BSON ==> Binary JSON
+-----------------------------------------
+
+Key characteristics of MongoDB database:
+--------------------------------------------
+1. All information related to a document will be stored in a single place.
+2. To retrive data it is not required to perform join operations hence retrival is    very fast.
+3. Documents are independent of each other and no schema. Hence we can store    unstructured data like videos, audio files etc
+4. We can perform operations like editing existing document, deleting document and    inserting new document very easily.
+5. Retrieval data is in the form of JSON which can be understandable by any       programming language without any conversion (interoperability).
+6. We can store very huge amount of data and hence scalability is more.
+7. Installation and setup is very easy.
+
+Note : ==> performance and Flexibility are biggest assets of MongoDB.
+
+Where we can use MongoDB database ?
+==> we can use everywhere
+for desktop applications, for mobile appliations
+for web applications, this database is more popular.
+
+Full stack developer : 
+
+stack ==> The technologies which can be used to develop web applications are           called a stack.
+
+The most popular stacks :
+1. MEAN stack
+2. MERN stack
+
+1. MEAN Stack :
+----------------
+M ----> MongoDB
+E-----> Express
+A-----> Angular
+N-----> Node JS
+
+-------------------
+M-----> MongoDB
+E-----> Express
+R-----> React JS
+N-----> Node JS
+
+React or Angular is front end framework.
+Express JS is the backend server side framework
+Node JS is responsible to provide server side runtime environment.
+MongoDB---> Database
+
+By using MEAN and MERN stacks we can build javascript based web applications.
+
+Node JS is based on java script
+React or Angular is based on java script
+Express is based on java script
+MongoDB is also based on java script
+
+Note == > MongoDB internally used Mozilla's Spider Monkey java script Engine 
+
+What is the type of MongoDB database ?
+==> It is document database/Nosql database
+
+MongoDB shell vs MongoDB server :
+--------------------------------------
+Once we installed MongoDB, we will get MongoDB shell and MongoDB server
+These are javascript based applications.
+
+MongoDB server is responsible to store our data in database.
+MongoDB shell is responsible to manage server.
+By using this shell we can perform all required CRUD operations.
+C-----> Create
+R-----> Retrieve
+U-----> pdate
+D-----> Delete
+
+sir in mongodb all crud operations are related to documents ?
+==> yes
+MongoDB server can be either local or remote.
+**************************************************
+To Launch/ start MongoDB server -----> mongod command
+To Launch/ start MongoDB shell  -----> mongosh command
+*************************************************************
+GUI support is also there for MongoDB shell----->
+		compass
+		Robo T3
+		etc
+
+MongoDB Drivers :
+---------------------
+From Application(java,python,c# etc) if we want to communicate with database, some special software must be required, which is nothing but Driver software.
+
+default port 27017
+-------------------
+==> db is predefined object in mongoDB application.
+show dbs ==> default logical databases.
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+mongoDB Admin will use these default databases.
+
+
+1. Admin : 
+-------------
+admin database is used to store user authentication and authorization information like username,password,roles,etc.
+This database is used by administrators while creating,deleting and updating users and while assigning roles.
+
+2. config :
+--------------------
+To store configuration information of mongodb server. 
+This database is used by admin only.
+
+3. local :
+------------
+local database can be used by admin while performing replication process.
+
+
+Data formats in MongoDB : 
+-----------------------------
+1. In javascript only 6 typesa are available.
+string, Number, object, Array, Boolean, Null
+
+But BSON provides some xtra types also like
+32-bit Integer ---> NumberInt
+ObjectId
+Date
+etc
+
+2. BSON format requires less memory
+JSON --> 10 KB
+BSON --> 4 to 5 KB
+
+Note : ==> Efficient storage and extra data types are speciality of BSON over JSON.
+
+EJSON ==> Extended JSON
+At the time of retrieval BSON data will be converted to EJSON for understanding purpose.
+
+
+Insertion of Document / Creation ---> JSON to BSON
+Read Operation/ Retrieval Operation---> BSON to EJSON
+
+Q What data formats used in MongoDB ?
+==> 3 formats : JSON, BSON, EJSON
+
+Creation of Database and Collection :
+-------------------------------------------
+use durgadb
+Database won't be created at the begining and it wiil be created dynamically.
+whenever we are creating collection or inserting document then database will be created dynamically.
+
+How to create collection :
+db.createCollection("employees")
+show collections
+db.createCollection("students")
+show collections
+
+How to drop collection ?
+==> db.collection.drop()
+    db.students.drop()
+
+How to drop database?
+==> db.dropDatabase()
+	==> current database wil be deleted.
+
+Basic CRUD operations in simple way :
+--------------------------------------
+1. C----> create / insert document
+-----------------------------------------
+How to insert document into the collection ?
+db.collection.insertOne()
+db.collection.insertMany()
+db.collection.insert()
+
+db.employees.insertOne({eno : 100,ename : "sunny",esal : 1000,eaddr : "Nagpur"})
+
+2. R-----> Read / Retrieval operation
+-------------------------------
+db.collection.find()---> To get all document present in the given collection
+db.collection.findOne()---> To get one document
+
+eg : ==> db.employees.find()
+
+
+3. U ----> Update operations :
+--------------------------------
+db.collection.updateOne()
+db.collection.updateMany()
+db.collection.replaceOne()
+
+-- update Vinny salary as 10000
+db.collection.updateOne()
+db.employees.updateOne({ename : "Vinny"},{esal : 10000})
+if esal field is available then old value will be replaced with 10000.
+if the field is not already available then it will be created.
+
+db.employees.updateOne({ename : "Vinny"},{esal : 10000})--> fails
+MongoInvalidArgumentError: Update document requires atomic operators
+
+db.employees.updateOne({ename : "Vinny"},{$set : {esal : 10000}})--> works fine
+
+*********************************************************************************
+Note : if anything prefixed with $ symbol, then it is predefined word in MongoDB.
+*********************************************************************************
+D-----> Delete :
+--------------------
+db.collection.deleteOne()
+db.collection.deleteMany()
+
+db.employees.deleteOne({ename : "Vinny"})
+
+Note : database and collection will be created dynamically whenever we are trying to insert documents.
+
+Capped collection :
+-----------------------
+If capped is true means that if size exceeds or maximum number of documents reached, then oldest entry will be deleted automatically.
+Default value for the capped is ==> False
+
+db.createCollection("employees")----> Normal collection
+
+db.createCollection("employees",{capped : true})---> Invalid 
+
+db.createCollection("employees2",{capped : true, size : 3736578, max: 1000})---> valid
+
+Q What is capped collection ?
+==>If capped is true means that if size exceeds or maximum number of documents reached, then oldest entry will be deleted automatically, such type of collection is called capped collection.
+
+CRUD
+Inserting Documents in the collection(C--> Create) : 
+----------------------------------------------------
+db.collection.insertOne()
+db.collection.insertMany()
+db.collection.insert()
+
+db.collection.insertOne() :
+------------------------------------
+To insert only one document.
+db.employees.insertOne({......})
+	Argument is only one javascript object.
+
+db.employees.insertOne({eno : 100, ename : "katrina",esal : 1000,eaddr : "Nagpur"})
+
+
+db.collection.insertMany() :
+================================
+To insert multiple document.
+db.collection.insertMany([{..},{..},{..},{..}])
+
+db.employees.insertMany([{eno : 200, ename : "katrina",esal : 1000,eaddr : "Nagpur"},{eno : 300, ename : "katrina",esal : 1000,eaddr : "Nagpur"}])
+
+db.collection.insert() :
++++++++++++++++++++++++++++
+To insert either a single document or multiple document.
+
+db.employees.insert({eno : 700, ename : "katrina",esal : 1000,eaddr : "Nagpur"})
+ 
+
+db.employees.insert([{eno : 800, ename : "katrina",esal : 1000,eaddr : "Nagpur"},{eno : 900, ename : "katrina",esal : 1000,eaddr : "Nagpur"}])
+
+# Creating Documnet separately and inserting into collections : 
+==================================================================
+var emp = {};
+emp.eno = 7777;
+emp.ename = "Bunny";
+emp.esal = 777777;
+emp.eaddr = "Nagpur";
+
+db.employees.insertMany([emp])
+
+**********************************************************************************
+The complete story of creating collection :
+----------------------------------------------
+db.createCollection("employees2")
+db.createCollection(name,options)
+
+name is of string type which represents name of collection.
+options is javascript object
+	size in bytes
+	maximum number of aloowed documents
+	capped
+	376874 bytes / 100 document
+
+If capped : true means that if the size exceeds or number of documents exceeds max number then oldest entry will be deleted automatically.
+
+	
+db.createCollection("employees",{capped : true,size : 3673675,max : 100})
+
+
+Q What is the meaning od capped collection ?
+==> If the size exceeds or number of documents exceeds max number then oldest entry will be deleted automatically. such type of collection is called capped collection.
+
+db.createCollection("employee3",{max : 1})----> fails (the 'capped' field needs to be true when either the 'size' or 'max' fields are present)
+
+db.createCollection("employee3",{capped : true, max : 1})-----> fails ( the 'size' field is required when 'capped' is true)
+
+db.createCollection("employees3",{capped : true,size : 3763765, max : 1})----> works
+
+db.employees3.insertOne({"Gautam" : 100})--> works
+
+db.employees3.insertOne({"Vaidehi" : 500})--> works
+
+db.employees3.find()---> Gautam 100 got deleted automatically because of capped collection as maax number given is 1.
+
+db.createCollection("employees4",{capped : false, size : 3763765, max : 1})---> fails(the 'capped' field needs to be true when either the 'size' or 'max' fields are present)
+----------------------------------------------------------------------------------
+
+Insertion of Documenst into Collection (Create Operation):
+-------------------------------------------------------------
+db.collection.insertOne()
+db.collection.insertMany()
+db.collection.insert()
+
+db.employees.insertOne({eno : 100, ename : "Vaidehi", esal : 1000000, eaddr : "Bhandara"})
+
+db.employees.insertMany([{eno : 200, ename : "Shital", esal : 1000000, eaddr : "Bhandara"},{eno : 300, ename : "Yashashree", esal : 1000000, eaddr : "Nagpur"}])
+
+creating document separately and inserting into collection :
+----------------------------------------------------------------
+var emp = {};
+emp.eno = 211;
+emp.ename = "Gautam Tyagi";
+emp.esal = 1000000;
+emp.eaddr = "Bela";
+
+emp
+db.employees.insert(emp)
+
+
+inserting documents from javascript file :
+-----------------------------------------------------------
+studentdb---> database name
+students----> collection name
+in this collection we have to insert documents
+
+students.js:
+----------------------
+db.students.insertOne({name : "Gautam Tyagi",rollno : 101, marks : 98})
+db.students.insertOne({name : "Ravi",rollno : 102, marks : 99})
+db.students.insertOne({name : "Shiva",rollno : 103, marks : 100})
+db.students.insertOne({name : "Pawan",rollno : 104, marks : 80})
+
+load("D:\students.js")
+
+Inserting Documents from json file (mongoimport tool) :
+==========================================
+In json file, the data should be in array form.
+Make sure the data should be of json form only.
+
+
+json vs javascript object :
+------------------------------
+In javascript object, quote symbols for keys are optional.
+But in json, quote symbols are mandatory for keys.
+
+db.collection.insertOne(javascript object)
+			Here quote symbols are optional
+
+
+students.json :
+-------------------
+[
+ 
+    {
+        "name" : "Gautam Tyagi"
+	"rollno" : 666
+    },
+
+    {
+        "name" : "Vaidehi"
+	"rollno" : 100
+    },
+
+    {
+        "name" : "Shtial"
+	"rollno" : 101
+    },
+
+    {
+        "name" : "Vaibhavi"
+	"rollno" : 103
+    }
+
+]
+
+mongod----> tool to start mongoDB server
+
+mongosh----> tool to start mongoDB shell
+
+mongoimport-----> tool to import documents from json file into mongoDB
+
+mongoimport is not available bydefault. we have to make it available manually.
+
+copy mongoimport.exe to the mongoDB bin folder
+(C:\Program Files\MongoDB\Server\6.0\bin)
+
+****
+Note : ==> mongoimport command should be executed from the command prompt but not from the shell.
+
+Insert all documents from json file into mongoDB
+database name : ==> rahuldb
+collection name : ==> students9
+
+from the command prompt, go to the location where json file is available
+
+mongoimport --db databaseName --collection collectionName --file fileName --jsonArray
+
+mongoimport --db rahuldb --collection students9 --file students.json --jsonArray
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
