@@ -21,7 +21,6 @@ jobs:
           TARGET: "/home/ec2-user/"
       - name: Install Dependencies
         run: pip3 install -r requirements.txt
-   
     
        
       
