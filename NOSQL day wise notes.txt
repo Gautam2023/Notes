@@ -1,0 +1,33 @@
+DIfference between declarative and procedural language
+SQL ==> is declarative language
+NOSQL==> Not only SQL
+5 'vvvvv'  ==> ? Velocity, Volume, Value, Variety and Veracity
+
+session 1
+---------------
+NOSQL ==> Not Only SQL
+
+IN DDL ==> we are modifying metadata.
+data dictionary views,
+DDL ==> create,Drop,Alter,Truncate
+
+DML ==> Insert,update,Delete,Merge (DML modifies structure of the data)
+
+DCL ==> Grant,Revoke
+
+TCL ==> Commit,Rollback,Transaction
+
+vertical scaling ==> same machine we try to increarse the hardware but there is a  limitation for this.
+
+Horizontal scale ==> to add more machine.
+
+CAP Theorem :
+BASE :
+Brief history :
+Nosql pros/cons:
+
+Here are the four main types of NoSQL databases:
+Document databases.
+Key-value stores.
+Column-oriented databases.
+Graph databases.

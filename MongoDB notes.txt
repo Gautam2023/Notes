@@ -1,0 +1,120 @@
+# MongoDB is an open-source document database and leading NoSQL database.
+# MongoDB is written in c++
+# This will give you great understanding on MongoDB concepts needed to create and deploy a highly scable and performance-Oriented database.
+
+# Data is stored in key : value pair.
+ 
+#   MongoDB contents :
+----------------------------
+==> MongoDB - Drop collection
+==> MongoDB - Data Types
+==> MongoDB - Insert Document
+==> MongoDB - Query Document
+==> MongoDB - Update Document
+==> MongoDB - Delete Document
+==> MongoDB - Projrction
+==> MongoDB - Limiting Records
+==> MongoDB - Sorting Records
+==> MongoDB - Indexing
+==> MongoDB - Aggregations
+==> MongoDB - Relationship
+==> MongoDB - Database References
+==> MongoDB - Covered Queries
+==> MongoDB - Analyzing Quaries
+==> MongoDB - Atomic operations
+==> MongoDB - Advanced Indexing
+--------------------------------------
+
+MongoDB Overview :
+==> MongoDB is a cross-platform
+==> MongoDB is Document oriented database
+==> MongoDB provides high performance
+==> MongoDB provide high availability
+==> MongoDB Easily scalable
+==> MongoDBworks on concept of collecting and documnet
+---------------------------------------------------------
+
+
+# Database :
+	=> database is a physical container for collection.
+	=> Its database gets it's own set of files on the file system.
+	=> A single MongoDB server Typically has multiple databases.
+# Collection :
+	=> Collection is a group of MongoDB documents. It is the equivalent of an RDBMS table.
+	=> A collection exists within a single database.
+	=> Collection do not inforce a schema.
+	=> Documents within a collection can have different fields. Typically all documents in a collection are of similar or related purpose.
+# Document :
+	=> A document is a ..............
+
+{
+   
+   "title": "MongoDB Overview", 
+   "description": "MongoDB is no sql database",
+   "by": "tutorials point",
+   "url": "http://www.tutorialspoint.com",
+   "tags": ["mongodb", "database", "NoSQL"],
+   "likes": 100, 
+   "comments": [	
+      {
+         "user":"user1",
+         "message": "My first comment",
+         "dateCreated": new Date(2011,1,20,2,15),
+         "like": 0 
+      },
+      {
+         "user":"user2",
+         "message": "My second comments",
+         "dateCreated": new Date(2011,1,25,7,45),
+         "like": 5
+      }
+   ]
+}
+
+
+# Any relational database has a typical schema design that shows number of tables   and the relationship between these tables. While in MongoDB, there is no concept   of relationship.
+
+	Advantages of MongoDB over RDBMS :
+
+==> Schema less − MongoDB is a document database in which one collection     holds different documents. Number of fields, content and size of the document     can differ from one document to another. 
+==> Structure of a single object is clear.
+==> No complex joins.
+==> Deep query-ability. MongoDB supports dynamic queries on documents using a     document-based query language that's nearly as powerful as SQL.
+==> Tuning.
+==> Ease of scale-out − MongoDB is easy to scale.
+==> Conversion/mapping of application objects to database objects not needed.
+
+==> Uses internal memory for storing the (windowed) working set, enabling faster     access of data.
+ 
+# Where to Use MongoDB?
+  Big Data
+
+==> Content Management and Delivery
+
+==> Mobile and Social Infrastructure
+
+==> User Data Management
+
+==> Data Hub
+
+#   MongoDB - Data Modelling :
+
+==> Data in MongoDB has a flexible schema.documents in the same collection. They       do not need to have the same set of fields or structure Common fields in a     collection’s documents may hold different types of data.
+
+
+#	Considerations while designing Schema in MongoDB :
+ == >   Design your schema according to user requirements.
+
+==>     Combine objects into one document if you will use them together. Otherwise         separate them (but make sure there should not be need of joins).
+
+===>    Duplicate the data (but limited) because disk space is cheap as compare to         compute time.
+
+==>     Do joins while write, not on read.
+
+===>    Optimize your schema for most frequent use cases.
+
+==>     Do complex aggregation in the schema.
+
+
+
+

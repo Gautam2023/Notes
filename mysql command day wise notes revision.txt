@@ -1,0 +1,450 @@
+create table t1
+(c1 int,
+c2 varchar(100),
+c3 date);
+
+show tables;
+select * from t1;
+desc t1;
+
+--get current date in mysql-----
+
+select current_date();
+
+---single row insert command----
+
+insert into t1(c1,c2,c3) values(1,'a','2022-11-29');
+
+select * from t1;
+
+---below is multi-row insert command----
+
+insert into t1(c1,c2,c3) values
+(2,'b','2022-11-30'),
+(3,'c','2022-11-28'),
+(4,'d','2022-11-27'),
+(5,'e','2022-11-26'); 
+
+----below insert is without column name----------
+
+insert into t1 values(6,'f','2022-11-25');
+
+-----insert data for specific columns------
+
+insert into t1(c1,c2) values(10,'a10');
+
+** NULL ==> means value not yet defined. NULL doesn't mean blank or 0.
+
+-- is used for single line comment in mysql
+
+/* multi
+line  comments
+*/
+
+get specific columns and all rows ==> select c1,c2 from t1;
+
+==> get specific rows ==> use where clause ==> select * from t1 where c1 = 1;
+
+-- below command search for the data where the value of c2 is 'a' 
+	select * from t1 where c2 = 'a';
+
+--below command search for the data where the value of c2 is 'aaa'
+	select * from t1 where c2 = 'aaa';
+
+--below command search for the data where the value of c2 is b and c1=2
+	select * from t1 where c2 = 'b' and c1 = 2;
+
+--below command search for the data where the value of c2 is b or c1=2
+	select * from t1 where c2 = 'b' or c1 = 2;
+
+--below command search for the data where the value of c2 is b or c1=1
+	select * from t1 where c2 = 'b' or c1 = 1;
+
+
+
+-- not equal to operator using !=
+select * from t1 where c1 != 1;
+
+
+
+-- not equal to operator using <>  same as above !=
+select * from t1 where c1 <> 1;
+
+ 
+--greater than operator
+	select * from t1 where c1 > 1;
+
+-- In operator: ==> you can provide list of values that you want to search
+	with equal to you can provide only one value but with In operator you can
+provide a list of value.
+	select * from t1 where c1 in (1,4,5);
+	select * from t1 where c2 in ('a','b');
+
+
+-- not in : ==> you can provide list of values that should not come in search
+
+	select * from t1 where c1 not in (1,4,5);
+
+--between operator is used to get a range of values,  between inclued boundaries values.
+	select * from t1 where c1 between 2 and 5;
+	select * from t1 where c2 between 'a' and 'c';
+ 
+-- not between operator is excluding a specific range
+	select * from t1 where c1 not between 2 and 5;
+	select * from t1 where c2 not between 'a' and 'c';	
+
+--is null operator is used to search rows where a specific column has null values
+	select * from t1 where c3 is null;
+
+--is not null operator is used to search rows where a specific column has no null values
+	select * from t1 where c3 is not null;
+
+insert into t1 values(11,'adffeaaz',current_date());
+
+insert into t1 values(12,'addffeaaz',current_date());
+
+insert into t1 values(13,'adffeeaaz',current_date());
+
+insert into t1 values(14,'adffeaazz',current_date());
+
+
+--like operator is used to search values based on a pattern
+--two ways to do search using like operator :
+-- % means any number of characters
+-- _ means exactly 1 character
+
+--below query search for c2 where c2 starts with character 'a'
+	 select * from t1 where c2 like 'a%';
+
+--below query search for c2 where c2 contains character 'a' anywhere
+	select * from t1 where c2 like '%a%';
+
+--below query search for c2 where c2 starts with 'a' and ends with 'z'
+	select * from t1 where c2 like 'a%z';
+
+--below query search for c2 where c2 starts with a and ends with 0 and should have exactly 3 characters
+	select * from t1 where c2 like 'a_0';
+
+ 
+-- below query search for c2 where c2 doesn't start with character 'a'
+	select * from t1 where c2 not like 'a%';
+
+--below query search for c2 where c2 doesn't contains character a anywhere
+	select * from t1 where c2 not like '%a%';
+
+--below query search for c2 where c2 doesnot start with a and ends with z
+	select * from t1 where c2 not like 'a%z';
+
+--below query search for c2 where c2 does not starts with a and ends with 0 and should have exactly 3 characters
+	select * from t1 where c2 not like 'a_0';
+
+
+Note : ==> Wildcard character 
+	   (1) % ==> which means any number of character
+	   (2) _ ==> which means exactly one character
+
+
+--below search for c2 where c2 contains character 'a' anywhere but 'a' should not be at the start and should not be at the end
+	select * from t1 where c2 like '%a%'
+	and c2 not like 'a%' and c2 not like '%a';
+
+
+select * from t1 where c1 like '1%';
+
+-- update null in c3 to current_date
+	update t1 set c3 = current_date() where c3 is null;
+
+-- update c2 to 'xyz' ,c3 = 1 jan 2021 where c1 = 1
+	update t1 set c2 = 'xyz' , c3 = '2021-01-01' where c1 = 1;
+
+
+--delete :
+delete from t1 where c1 = 11;
+
+--transaction with rollback option
+start transaction;
+delete from t1 where c1 = 12 and c2 = 'b';
+rollback;
+---------------------------------------------------------------------------------
+Note : ===> everything in the start transaction written will be rollback, this is a property of transaction called "Atomacity" which means a transaction is either fully committed or fully rollback, a part of the transaction can not be committed or rollback.
+*********************************************************************************
+if you want to delete  two row having exactly same value you can use limit.
+delete from t1 where c1 = 10 limit 1;
+--------------------------------------------------------------------------------
+Imp Note : ==> command to see autocommit is ON by default ==>
+				show variables like 'autocommit';
+********************************************************************************
+Q What if I am starting a transaction, I did a commit, can you do a rollback ?
+	==> No
+Q why it's get autocommited ? 
+	===> because there is a variable called "autocommit" which is set to on by default which is making all the changes getting autocommited if you don't start 	     transaction.
+
+-- alter add new table to existing table
+	alter table t1 add c4 int;
+-- for the new column the value is null for existing rows
+
+-- alter drop column:
+	alter table t1 drop column c4;
+
+--alter rename table
+	alter table t1 rename to t2;
+
+Note : ==> you can not roll back on alter. rollback does not work on DDL commands.
+
+--alter rename column
+	alter table t1 rename column c1 to a1;
+
+--constraints 
+--unique key
+create table t_uk(id int unique, name varchar(100));
+--id column cannot have duplicate values
+insert into t_uk values(1,'a'); --> works
+insert into t_uk values(1,'a');--> fails because 1 in ID is already present
+
+insert into t_uk values(null,'a');--> works as null in unique key is allowed
+insert into t_uk values(null,'a');--> works as multiple nulls in unique key is allowed
+
+table with composite unique key :
+---------------------------------------
+--below table combination of c1 and c2 is unique but both c1 and c2 are not unique on its own
+create table t_unq_comp(c1 int,c2 int,c3 varchar(100),unique(c1,c2));
+
+insert into t_unq_comp values(1,1,'a');--> works
+insert into t_unq_comp values(1,2,'a');--> works
+
+insert into t_unq_comp values(2,2,'a');--> works
+
+insert into t_unq_comp values(2,2,'b');--> fails
+
+
+--create table with multiple unique keys
+---------------------------------------------
+--below table has two unique keys - one on c1 and second on c2
+create table t_uk_multi(c1 int unique,c2 int unique,c3 varchar(100));
+
+
+--primary key
+-----------------
+create table t_pk(id int primary key,name varchar(100));
+insert into t_pk values(1,'a');--> works
+insert into t_pk values(1,'b');--> fails
+insert into t_pk values(null,'c');--> fails
+
+
+--composite primary key
+---------------------------
+create table t_pk_comp(c1 int,c2 int,c3 varchar(100),primary key(c1,c2));
+
+--multiple primary key :
+-------------------------
+create table t_pk_multi(c1 int primary key, c2 int primary key, c3 varchar(100));---> fails (Multiple primary key defined).
+
+--add unique key to t1 existing table
+alter table t1 add unique(c1);-----> fails if c1 already has duplicate records.
+
+--not null constraint :
+create table t_nn (id int not null,name varchar(100));
+insert into t_nn values(null,'a');---> fails (Column 'id' cannot be null)
+insert into t_nn(name) values('a');---> fails (Field 'id' doesn't have a default value)
+
+
+--Check constraints :
+-----------------------------
+create table t_cc(id int,salary int check(salary>0));
+
+insert into t_cc values(1,-10);---> fails (Check constraint 't_cc_chk_1' is violated.)
+
+insert into t_cc values(1,10);---> works
+
+create table t_cc2(id int,gender varchar(100) check(gender in('Male','Female')));
+
+insert into t_cc2 values(1,'Male');-----> works
+insert into t_cc2 values(1,'xyz');------> fails ( Check constraint 't_cc2_chk_1' is violated.)
+
+=====================================================================
+Note : Integrity of data ===> means correctness or completeness.
+=========================================================================
+
+--foriegn key / refrential integrity constraint / parent child relationship
+-----------------------------------------------------------------------------
+
+
+1. create parent table :
+-----------------------------
+create table t_parent (deptid int primary key,deptname varchar(100));
+
+create table t_child (eid int,ename varchar(100),deptid int, foreign key(deptid) references t_parent(deptid));
+
+insert into t_child values (1,'a',1);---> fails as deptid 1 is not present in t_parent
+insert into t_parent values(1,'HR');----> works
+
+insert into t_child values(1,'a',1);---> works as deptid 1 is now present in t_parent.
+
+insert into t_child values(1,'a',null);----> works as null is allowed in the child as deptid is not define as not null column.
+
+
+--composite foreign key :
+================================
+--for composite foreign key you need to first create a table with either a composite unique or primary key
+
+create table t_parent_comp(c1 int, c2 int,c3 varchar(100), unique(c1,c2));
+
+create table t_child_comp(c1 int, c2 int, c4 varchar(100),foreign key(c1,c2) references t_parent_comp(c1,c2));
+
+insert into t_child_comp values(1,1,'a');----> fails
+
+insert into t_parent_comp values(1,1,'a');---> works
+
+
+insert into t_child_comp values(1,1,'a');----> works
+
+--default constraints :
+-------------------------
+defines what vakue the column will take if explicit value for the columns is not provided while inserting the data
+
+create table t_def(id int, salary int default 1000);
+
+insert into t_def(id) values(1);
+
+insert into t_def(id,salary) values(1,2000);
+
+insert into t_def(id,salary) values(1,null);
+
+--joins :
+------------------
+drop table t1;
+
+create table t1(c1 int, c2 varchar(100));
+
+create table t2(c1 int, c3 varchar(100));
+
+insert into t1 values(1,'a'),(2,'b'),(3,'c');
+
+insert into t2 values(3,'x'),(4,'y'),(5,'z');
+
+--cross join :
+-------------------
+--ansi/new syntax join :
+select * from t1 cross join t2;
+
+--old syntax join :
+select * from t1 , t2;
+
+if I want specific column then
+select t1.c1,c2,c3 from t1, t2;
+
+select t1.c1,c2,c3 from t1,t2 order by t1.c1;
+
+--inner join : inner join is a type of Equi join :
+--------------------------------------------------------
+In inner join we join the two tables based on some equality condition. Inner join returns only those rows which satisfy matching conditions
+
+--ansi/new syntax :
+------------------------
+select * from t1 inner join t2 on t1.c1=t2.c1;
+
+select * from t1 join t2 on t1.c1=t2.c1;
+ 
+--old Inner join syntax :
+-----------------
+select * from t1, t2 where t1.c1=t2.c1;
+
+
+--Left outer join
+---------------------
+in left outer join we join the two tables based on some equality condition.Left outer join returns matching rows and also left over rows from the left table.
+
+--left join can only be done with the new syntax. we can not do it with old syntax.
+
+--new/ansi syntax :
+----------------------
+select * from t1 left join t2 on t1.c1=t2.c1;
+
+--Right outer join :
+---------------------------
+In right outer join we join the two tables based on some equality condition.Right outer join returns matching rows and also left over rows from the right table.
+
+--new/ansi syntax :
+----------------------
+select * from t1 right join t2 on t1.c1=t2.c1;
+
+*********************************************************************************
+Note : ==> Main difference between inner join and outer join ?
+	==> In inner join you get only matching rows but in outer join you will get matching rows plus some additional rows.
+Note : ==> Left and Right join can only be done by new ansi syntax.
+*********************************************************************************
+full outer join : ==> In full outer join we join the two tables based on some equality condition. full outer join returns matching rows and also left over rows from both the right table and left table
+
+*****************************************************
+Note : ==> Full outer join is not supported in MYSQL
+*******************************************************
+--but there is workaround in mysql to get output similar to full join
+
+==============================================================================
+--set operator :
+-------------------
+create table a (id int);
+create table b (id int);
+
+insert into a values(1),(2),(3);
+insert into b values(3),(4),(5);
+
+select * from a union select* from b;
+
+select * from b union select* from a;
+
+select * from a union all select* from b;
+
+select * from b union all select* from a;
+
+
+--workaround of full join
+select * from t1 left join t2 on t1.c1=t2.c1
+union
+select * from t1 right join t2 on t1.c1=t2.c1;
+
+
+-- Sub Quaries
+-------------------------
+---workaround for intersect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
