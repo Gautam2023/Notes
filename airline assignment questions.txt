@@ -1,0 +1,17 @@
+questions from user perspective
+====================================
+What is IATA CODE ==> International Air Transport Association
+
+IATA Codes are an integral part of the travel industry and essential for the identification of an airline, its destinations and its traffic documents.
+
+Questions based on airlines data from user perspective 
+------------------------------------------------------------
+(1) To know the total numbe of Airports available in that particular state whichever he selects ?
+(2) To know the exact location of all the airports available in that state
+(3)Which are the top 10 Airlines in that operates in that state ?
+
+(1) Read image file from s3(bucket1) based on s3 trigger event
+(2) Resize/shape image
+(3) save image back to s3
+
+
